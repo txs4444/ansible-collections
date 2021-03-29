@@ -1,0 +1,6 @@
+tensorflow:
+  user:
+    name: tensor
+    home: /home/tensor
+    secondary_groups:
+      - wheel

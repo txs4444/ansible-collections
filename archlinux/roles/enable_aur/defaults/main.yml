@@ -1,0 +1,5 @@
+aur_builder:
+  user:
+    name: aur_builder
+    group: wheel
+    home: /home/aur_builder

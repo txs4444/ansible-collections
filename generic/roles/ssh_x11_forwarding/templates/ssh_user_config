@@ -1,0 +1,2 @@
+Host {{ ansible_env.SSH_CONNECTION.split(' ')[0] }}
+	ForwardedX11Trusted yes

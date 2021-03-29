@@ -1,0 +1,14 @@
+namespace: "txs4444"
+name: "archlinux"
+version: "0.0.1"
+license:
+  - "MIT"
+readme: "README.md"
+authors:
+  - Tomasz Stepanko <txs4444@gmail.com>
+dependencies:
+  "ansible.posix": "*"
+tags:
+  - collection
+  - archlinux
+  - tensorflow

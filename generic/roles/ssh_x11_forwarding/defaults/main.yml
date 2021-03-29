@@ -1,0 +1,4 @@
+ssh:
+  x11:
+    trusted:
+      enabled: False

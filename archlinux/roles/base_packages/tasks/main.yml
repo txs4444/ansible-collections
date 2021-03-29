@@ -1,0 +1,25 @@
+- name: Install base-devel
+  pacman:
+    name: base-devel
+    state: present
+  become: yes
+- name: Install manuals
+  block:
+   - name: man-db
+     pacman:
+       name: man-db
+       state: present
+   - name: man-pages
+     pacman:
+       name: man-pages
+       state: present
+   - name: texinfo
+     pacman:
+       name: texinfo
+       state: present
+  become: yes
+- name: Install vim
+  pacman:
+    name: vim
+    state: present
+  become: yes

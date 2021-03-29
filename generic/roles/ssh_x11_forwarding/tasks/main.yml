@@ -1,0 +1,45 @@
+- name: Enable SSH X11 Forwarding
+  block:
+  - name: Install xorg
+    pacman:
+      name: xorg
+      state: present
+  - lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^#X11Forwarding no'
+      line: X11Forwarding yes
+  - lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^#AllowTcpForwarding yes'
+      line: AllowTcpForwarding yes
+  - lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^#X11UseLocalhost yes'
+      line: 'X11UseLocalhost yes'
+  become: yes
+# TODO Extract it to module as it's so generic it will probably be needed somewhere else
+- name: "Getting home directory of {{ ssh.x11.trusted.user }}"
+  shell: >
+    awk -F ":" '$1 == "{{ ssh.x11.trusted.user }}" {print $6}' /etc/passwd
+  register: user_home_cmd_result    
+- name: "Ensure {{ user_home_cmd_result.stdout}}/.ssh directory exists"
+  file:
+    path: "{{ user_home_cmd_result.stdout }}/.ssh"
+    state: directory
+    owner: "{{ ssh.x11.trusted.user }}"
+    group: "{{ ssh.x11.trusted.user }}"
+  become: yes
+- name: Enable Trusted X11 Forwarding
+  template:
+    src: ssh_user_config
+    dest: "{{ user_home_cmd_result.stdout }}/.ssh/config"
+    owner: "{{ ssh.x11.trusted.user }}"
+    group: "{{ ssh.x11.trusted.user }}"
+  become: yes      
+  when: ssh.x11.trusted.enabled
+# TODO Would be better to use handler and notify - not to restart ssh everytime role is executed
+- name: Restart sshd
+  service:
+    name: sshd
+    state: restarted
+

@@ -1,0 +1,11 @@
+namespace: "txs4444"
+name: "generic"
+version: "0.0.1"
+license:
+  - "MIT"
+readme: "README.md"
+authors:
+  - Tomasz Stepanko <txs4444@gmail.com>
+tags:
+  - demo
+  - collection
