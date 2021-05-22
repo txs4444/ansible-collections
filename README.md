@@ -12,15 +12,14 @@ List of collections:
 As of now, collections are not available through ansible-galaxy and have to be installed manualy in order to use.
 1) To do this you need to clone this repository
 ```
-git clone 
+git clone git@github.com:txs4444/ansible-collections.git
 ```
 2) Enter directory of the collection you want to install, e.g. archlinux
-3) Build collection
+3) Build collection - after this command you should have `txs4444-archlinux-0.0.1.tar.gz` file in directory.
 ```
 ansible-galaxy collection build
 ```
-Then you should see artefact: `txs4444-archlinux-0.0.1.tar.gz` in directory
-4) Install collection:
+4) Install collection
 ```
 ansible-galaxy collection install txs4444-archlinux-0.0.1.tar.gz
 ```
