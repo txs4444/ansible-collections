@@ -4,5 +4,6 @@ dependencies:
   - tensorflow
   - tensorflow-datasets
   - matplotlib
+  - ipython
   - pip:
-    - "--editable=git+https://github.com/tensorflow/examples.git"
+    - "--editable=git+https://github.com/tensorflow/examples.git#egg=tensorflow-examples"
