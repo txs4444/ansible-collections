@@ -1,0 +1,13 @@
+- name: Install usb multiplex library and library for Apple protocol to talk to iPhone/iPad
+  community.general.pacman:
+    name:
+      - usbmuxd
+      - libimobiledevice
+    state: present
+  become: yes
+- name: Install iFUSE to handle FUSE file system for mounting
+  ansible.legacy.aur:
+    use: yay
+    name: ifuse
+  become: yes
+  become_user: "{{ aur_builder.user.name }}"
